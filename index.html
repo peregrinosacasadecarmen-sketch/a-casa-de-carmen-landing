@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Casa de Carmen · Barbadelo, 4 km dopo Sarria</title>
+<meta name="description" content="Albergue a conduzione italiana sul Camino Francés, 4 km dopo Sarria. Pasta fresca fatta a mano, cena comunitaria, casa in pietra del XVII secolo.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Work+Sans:wght@400;500;600&family=Caveat:wght@600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --granite-900:#4a4438;
+    --granite-800:#5c5446;
+    --parchment-50:#f4efe2;
+    --parchment-100:#eee5d0;
+    --moss-600:#59654a;
+    --moss-700:#454f38;
+    --camino-gold:#e2a530;
+    --vino-700:#7a3230;
+    --ink:#26241f;
+    --ink-soft:#57534a;
+    --line:rgba(38,36,31,0.14);
+    --radius:2px;
+    --maxw:1120px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.001ms !important; transition-duration:0.001ms !important;}
+  }
+  body{
+    margin:0;
+    font-family:'Work Sans',sans-serif;
+    color:var(--ink);
+    background:var(--parchment-50);
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{
+    font-family:'Fraunces',serif;
+    font-weight:600;
+    margin:0;
+    letter-spacing:-0.01em;
+  }
+  a{color:inherit;}
+  img,svg{display:block;max-width:100%;}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px;}
+  :focus-visible{outline:3px solid var(--camino-gold);outline-offset:3px;}
+
+  /* ---------- topbar ---------- */
+  .topbar{
+    position:sticky;top:0;z-index:40;
+    background:var(--parchment-50);
+    border-bottom:1px solid var(--line);
+  }
+  .topbar .wrap{
+    display:flex;align-items:center;justify-content:center;gap:20px;
+    padding-top:14px;padding-bottom:14px;
+  }
+  .brand{
+    font-family:'Fraunces',serif;font-weight:600;font-size:19px;
+    display:flex;align-items:center;gap:8px;
+  }
+  .brand small{
+    font-family:'Work Sans',sans-serif;font-weight:500;font-size:11px;
+    color:var(--ink-soft);letter-spacing:0.04em;text-transform:uppercase;
+    display:block;
+  }
+  .topbar-actions{display:flex;align-items:center;gap:10px;}
+  .topbar-cta{
+    font-family:'Work Sans',sans-serif;font-weight:600;font-size:14px;
+    background:var(--camino-gold);color:var(--granite-900);
+    padding:10px 18px;border-radius:var(--radius);border:none;cursor:pointer;
+    text-decoration:none;
+  }
+  .topbar-cta:hover{background:#f0b64e;}
+  .topbar-ghost{
+    font-family:'Work Sans',sans-serif;font-weight:600;font-size:14px;
+    color:var(--ink);padding:10px 6px;text-decoration:none;
+    display:none;
+  }
+  @media (min-width:520px){.topbar-ghost{display:inline-block;}}
+
+  /* ---------- km marker (signature element) ---------- */
+  .km-marker{
+    display:inline-flex;flex-direction:column;align-items:center;
+    background:var(--granite-800);color:var(--parchment-50);
+    padding:10px 14px 12px;border-radius:3px 3px 8px 8px;
+    position:relative;min-width:64px;
+  }
+  .km-marker::before{
+    content:"";display:block;width:100%;height:5px;
+    background:var(--camino-gold);margin-bottom:6px;border-radius:2px;
+  }
+  .km-marker b{font-family:'Fraunces',serif;font-size:22px;line-height:1;}
+  .km-marker span{font-size:9px;letter-spacing:0.08em;text-transform:uppercase;margin-top:3px;opacity:0.85;}
+
+  /* ---------- hero ---------- */
+  .hero{
+    background:var(--granite-900);color:var(--parchment-50);
+    padding:44px 0 36px;position:relative;
+  }
+  .hero .wrap{position:relative;z-index:2;text-align:center;}
+  .hero-top{display:flex;flex-direction:column;align-items:center;gap:12px;margin-bottom:24px;}
+  .hero-eyebrow{
+    font-size:12px;letter-spacing:0.12em;text-transform:uppercase;
+    color:var(--camino-gold);font-weight:600;margin-bottom:14px;
+  }
+  .hero h1{
+    font-size:clamp(32px,5vw,52px);line-height:1.08;max-width:14ch;margin:0 auto;
+  }
+  .hero-tagline{
+    font-family:'Fraunces',serif;font-style:italic;font-size:17px;
+    color:var(--camino-gold);margin:6px auto 16px;
+  }
+  .hero p.lede{
+    font-size:17px;line-height:1.5;max-width:46ch;color:#d9d3c2;margin:0 auto 22px;
+  }
+  .hero-actions{display:flex;gap:14px;flex-wrap:wrap;align-items:center;justify-content:center;}
+  .btn-primary{
+    background:var(--camino-gold);color:var(--granite-900);
+    font-family:'Work Sans',sans-serif;font-weight:600;font-size:15px;
+    padding:14px 26px;border-radius:var(--radius);border:none;cursor:pointer;
+  }
+  .btn-primary:hover{background:#f0b64e;}
+  .btn-ghost{
+    background:transparent;color:var(--parchment-50);
+    border:1px solid rgba(244,239,226,0.4);
+    font-family:'Work Sans',sans-serif;font-weight:500;font-size:15px;
+    padding:13px 22px;border-radius:var(--radius);cursor:pointer;
+    text-decoration:none;transition:border-color 0.15s ease,background-color 0.15s ease;
+  }
+  .btn-ghost:hover{border-color:rgba(244,239,226,0.8);background:rgba(244,239,226,0.08);}
+  .trust-row{
+    display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:26px;
+    border-top:1px solid rgba(244,239,226,0.15);padding-top:16px;
+  }
+  .trust-item{
+    display:flex;align-items:center;gap:8px;font-size:13.5px;color:#d9d3c2;
+  }
+  .trust-item svg{width:18px;height:18px;flex-shrink:0;}
+
+  /* ---------- section shell ---------- */
+  section{padding:48px 0;text-align:center;}
+  .eyebrow{
+    font-size:12px;letter-spacing:0.12em;text-transform:uppercase;
+    color:var(--vino-700);font-weight:600;margin-bottom:8px;
+  }
+  h2{font-size:clamp(24px,3.2vw,34px);line-height:1.15;max-width:20ch;margin:0 auto 12px;}
+  .lead{font-size:16px;line-height:1.55;color:var(--ink-soft);max-width:58ch;margin:0 auto;}
+
+  /* ---------- kitchen (cena comunitaria, full-width bg) ---------- */
+  .kitchen{
+    position:relative;background:var(--granite-900);color:var(--parchment-50);
+    overflow:hidden;min-height:320px;display:flex;align-items:center;padding:48px 0;
+    border-top:4px solid var(--camino-gold);
+  }
+  .kitchen-media{position:absolute;inset:0;z-index:0;}
+  .kitchen-media img{width:100%;height:100%;object-fit:cover;}
+  .kitchen-media::after{
+    content:"";position:absolute;inset:0;
+    background:linear-gradient(180deg,rgba(74,68,56,0.3) 0%,rgba(74,68,56,0.5) 100%);
+  }
+  .kitchen .wrap{position:relative;z-index:2;}
+  .kitchen-content{max-width:56ch;margin:0 auto;}
+  .kitchen .eyebrow{color:var(--camino-gold);font-size:16px;}
+  .kitchen h2{color:var(--parchment-50);}
+  .kitchen .lead{color:#d9d3c2;}
+
+  /* ---------- house ---------- */
+  .house{background:var(--parchment-100);}
+  .service-grid{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:1px;
+    background:var(--line);border:1px solid var(--line);margin-top:24px;
+  }
+  @media (max-width:820px){.service-grid{grid-template-columns:repeat(2,1fr);}}
+  .service-card{
+    background:var(--parchment-100);padding:18px 16px;min-height:118px;
+    display:flex;flex-direction:column;align-items:center;text-align:center;gap:7px;
+  }
+  .service-card svg{width:26px;height:26px;color:var(--moss-700);}
+  .service-card h3{font-size:15px;font-weight:600;font-family:'Work Sans',sans-serif;}
+  .service-card p{font-size:13px;color:var(--ink-soft);margin:0;line-height:1.4;}
+  .service-card{transition:background-color 0.15s ease;}
+  .service-card:hover{background:var(--parchment-50);}
+
+  /* ---------- kitchen photo pair ---------- */
+  .photo-pair{display:flex;min-height:320px;border-top:4px solid var(--camino-gold);border-bottom:4px solid var(--camino-gold);}
+  .photo-pair-item{position:relative;flex:1 1 50%;min-width:0;overflow:hidden;}
+  .photo-pair-item + .photo-pair-item{border-left:4px solid var(--camino-gold);}
+  .photo-pair-item img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+  .photo-pair-item::after{
+    content:"";position:absolute;inset:0;
+    background:linear-gradient(180deg,rgba(74,68,56,0.6) 0%,rgba(74,68,56,0.05) 45%);
+  }
+  .photo-pair-caption{
+    position:absolute;top:0;left:0;right:0;z-index:2;text-align:center;padding-top:22px;
+    font-size:16px;letter-spacing:0.12em;text-transform:uppercase;font-weight:600;
+    color:var(--camino-gold);
+  }
+  @media (max-width:640px){
+    .photo-pair{flex-direction:column;}
+    .photo-pair-item{min-height:260px;}
+    .photo-pair-item + .photo-pair-item{border-left:none;border-top:4px solid var(--camino-gold);}
+  }
+
+  /* ---------- prices ---------- */
+  .prices{background:var(--granite-900);color:var(--parchment-50);}
+  .prices .eyebrow{color:var(--camino-gold);}
+  .prices .lead{color:#d9d3c2;}
+  .price-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:1px;background:rgba(244,239,226,0.15);margin-top:22px;border:1px solid rgba(244,239,226,0.15);}
+  @media (max-width:520px){.price-grid{grid-template-columns:1fr;}}
+  .price-card{background:var(--granite-900);padding:18px 18px;text-align:center;transition:background-color 0.15s ease;}
+  .price-card:hover{background:#5c5446;}
+  .price-card .pre{font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:#a89f89;margin-bottom:6px;}
+  .price-card .amount{font-family:'Fraunces',serif;font-size:28px;color:var(--camino-gold);}
+  .price-card.featured .amount{font-size:38px;}
+  .price-card .label{font-size:13.5px;color:#d9d3c2;margin-top:4px;}
+  .price-card .flag{font-size:11px;color:#a89f89;margin-top:8px;line-height:1.4;}
+  .price-note{margin-top:14px;font-size:14px;color:#d9d3c2;}
+
+  /* ---------- booking widget (Beds24) ---------- */
+  .booking{background:var(--parchment-100);}
+  .booking-frame-wrap{
+    margin-top:24px;background:var(--parchment-50);border:1px solid var(--line);
+    border-radius:var(--radius);overflow:hidden;
+  }
+  .booking-frame-wrap iframe{width:100%;height:560px;border:0;display:block;}
+
+  /* ---------- footer ---------- */
+  footer{background:var(--granite-900);color:#a89f89;padding:24px 0;font-size:13px;text-align:center;}
+  footer .wrap{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;}
+  footer a{text-decoration:none;color:#d9d3c2;}
+
+  /* ---------- chat widget (credencial stamp) ---------- */
+  #chat-launcher{
+    position:fixed;right:20px;bottom:20px;z-index:60;
+    width:64px;height:64px;border-radius:50%;
+    background:var(--vino-700);color:var(--parchment-50);
+    border:2px dashed rgba(244,239,226,0.6);
+    display:flex;align-items:center;justify-content:center;
+    cursor:pointer;box-shadow:0 6px 18px rgba(38,36,31,0.28);
+  }
+  #chat-launcher svg{width:26px;height:26px;}
+  #chat-panel{
+    position:fixed;right:20px;bottom:96px;z-index:60;
+    width:320px;max-width:calc(100vw - 40px);
+    background:var(--parchment-50);border:1px solid var(--line);
+    border-radius:var(--radius);box-shadow:0 12px 32px rgba(38,36,31,0.25);
+    padding:20px;display:none;
+  }
+  #chat-panel.open{display:block;}
+  #chat-panel h3{font-size:16px;margin-bottom:4px;}
+  #chat-panel .sub{font-size:12.5px;color:var(--ink-soft);margin-bottom:16px;}
+  .whatsapp-link{
+    display:flex;align-items:center;justify-content:center;gap:8px;
+    background:var(--moss-600);color:var(--parchment-50);
+    font-family:'Work Sans',sans-serif;font-weight:600;font-size:14px;
+    padding:11px;border-radius:var(--radius);text-decoration:none;
+  }
+  .whatsapp-link:hover{background:var(--moss-700);}
+  .whatsapp-link svg{width:18px;height:18px;flex-shrink:0;}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap">
+    <div class="brand">A Casa de Carmen<small>Barbadelo · Camino Francés</small></div>
+    <div class="topbar-actions">
+      <a href="#" class="topbar-ghost" onclick="openChat();return false;">Scrivici</a>
+      <a href="#prenota" class="topbar-cta">Prenota</a>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-top">
+      <div>
+        <div class="hero-eyebrow">4 km dopo Sarria</div>
+      </div>
+      <div class="km-marker"><b>109</b><span>km a Santiago</span></div>
+    </div>
+    <h1 style="max-width:none;">A Casa de Carmen</h1>
+    <p class="hero-tagline">— fuori dal caos di Sarria —</p>
+    <div class="hero-actions">
+      <a href="#prenota" class="btn-primary" style="text-decoration:none;display:inline-block;">Prenota ora</a>
+      <a href="#casa" class="btn-ghost" style="display:inline-block;">Scopri la casa</a>
+    </div>
+    <div class="trust-row">
+      <div class="trust-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="10" width="18" height="8" rx="1"/><path d="M3 10V8a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v2"/><path d="M6 18v2M18 18v2"/></svg>
+        20 posti letto
+      </div>
+      <div class="trust-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="7" cy="8" r="1.6"/><circle cx="12" cy="6" r="1.6"/><circle cx="17" cy="8" r="1.6"/><path d="M9 15c0-2 1.5-3.5 3-3.5s3 1.5 3 3.5-1.5 4-3 4-3-2-3-4Z"/></svg>
+        Pet friendly
+      </div>
+      <div class="trust-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 12c2-5 6-8 8-8s6 3 8 8-6 8-8 8-6-3-8-8Z"/><path d="M9 9l6 6M15 9l-6 6"/></svg>
+        Senza glutine · vegetariano · vegano
+      </div>
+      <div class="trust-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 6h16M4 12h16M4 18h10"/></svg>
+        Pasta fresca fatta a mano
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="kitchen" id="cucina">
+  <div class="kitchen-media">
+    <img src="media/web_IMG_2766_3.jpg" alt="Cena comunitaria in giardino, ospiti a tavola con piatti di pasta fresca" loading="lazy">
+  </div>
+  <div class="wrap">
+    <div class="kitchen-content">
+      <div class="eyebrow">La cena comunitaria</div>
+      <h2>Ogni sera si mangia con amici</h2>
+      <a href="#prezzi" class="btn-ghost" style="display:inline-block;text-decoration:none;">Vedi i prezzi ↓</a>
+    </div>
+  </div>
+</section>
+
+<section class="kitchen-photos" style="padding:0;background:var(--parchment-50);">
+  <div class="photo-pair">
+    <div class="photo-pair-item">
+      <img src="media/pasta-fresca.png" alt="Piatto di pasta al pomodoro fatta a mano" loading="lazy" style="object-position:center 32%;">
+      <span class="photo-pair-caption">pasta fresca</span>
+    </div>
+    <div class="photo-pair-item">
+      <img src="media/giardino-drone.jpg" alt="Vista aerea della casa e del giardino" loading="lazy">
+      <span class="photo-pair-caption">ampissimo giardino</span>
+    </div>
+  </div>
+</section>
+
+<section class="house" id="casa">
+  <div class="wrap">
+    <div class="eyebrow">La casa</div>
+    <h2>Servizi</h2>
+    <div class="service-grid" style="margin-top:32px;">
+      <div class="service-card">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="4" width="18" height="16" rx="1"/><path d="M3 9h18M8 4v5"/></svg>
+        <h3>Microonde, frigo e chiringuito</h3>
+        <p>A disposizione, se preferisci prepararti qualcosa da solo o farti un aperitivo.</p>
+      </div>
+      <div class="service-card">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="13" r="5"/><path d="M6 4h12v3H6z"/></svg>
+        <h3>Lavanderia</h3>
+        <p>Lavatrice e asciugatrice, lenzuola incluse.</p>
+      </div>
+      <div class="service-card">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="6" cy="18" r="3"/><circle cx="18" cy="18" r="3"/><path d="M6 18l4-10h4l4 10M10 8h4"/></svg>
+        <h3>Deposito bici</h3>
+        <p>Ricovero coperto per le biciclette.</p>
+      </div>
+      <div class="service-card">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3l2 5 5 .5-4 3.5 1.5 5L12 14l-4.5 3 1.5-5-4-3.5L10 8z"/></svg>
+        <h3>Giardino</h3>
+        <p>Uno spazio verde dove fermarsi dopo la tappa.</p>
+      </div>
+      <div class="service-card">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l4 2"/></svg>
+        <h3>Accessibilità</h3>
+        <p>Struttura accessibile a persone con mobilità ridotta.</p>
+      </div>
+      <div class="service-card">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="7" cy="8" r="1.6"/><circle cx="12" cy="6" r="1.6"/><circle cx="17" cy="8" r="1.6"/><path d="M9 15c0-2 1.5-3.5 3-3.5s3 1.5 3 3.5-1.5 4-3 4-3-2-3-4Z"/></svg>
+        <h3>Animali ammessi</h3>
+        <p>Il tuo cane o gatto può accompagnarti in cortile.</p>
+      </div>
+      <div class="service-card">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3c3 3 5 6 5 9a5 5 0 0 1-10 0c0-3 2-6 5-9Z"/></svg>
+        <h3>Credenziale del pellegrino</h3>
+        <p>Disponibile in struttura, 2€.</p>
+      </div>
+      <div class="service-card">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 20V10l8-6 8 6v10"/><path d="M9 20v-6h6v6"/></svg>
+        <h3>Casa del '600</h3>
+        <p>In pietra granitica, accanto alla cappella di San Silvestre.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="prices" id="prezzi">
+  <div class="wrap">
+    <div class="eyebrow">Prezzi</div>
+    <div class="price-grid">
+      <div class="price-card featured">
+        <div class="amount">€16</div>
+        <div class="label">Posto letto / notte</div>
+      </div>
+      <div class="price-card">
+        <div class="amount">€2</div>
+        <div class="label">Credenziale del pellegrino</div>
+        <div class="flag">Fonte: directory pubbliche del Cammino.</div>
+      </div>
+    </div>
+    <p class="price-note">Colazione e cena comunitaria disponibili a scelta.</p>
+  </div>
+</section>
+
+<section class="booking" id="prenota">
+  <div class="wrap">
+    <div class="eyebrow">Prenota direttamente</div>
+    <h2>Disponibilità e prenotazione in tempo reale.</h2>
+    <div class="booking-frame-wrap">
+      <iframe
+        src="https://beds24.com/booking2.php?propid=266875&hidefooter=yes&referer=landing-page"
+        title="Prenotazione A Casa de Carmen · Beds24"
+        loading="lazy"></iframe>
+    </div>
+  </div>
+</section>
+
+
+<footer>
+  <div class="wrap">
+    <div>A Casa de Carmen · Lugar San Silvestre, Barbadelo · Sarria (Lugo), Galicia</div>
+    <div>
+      <a href="tel:+34982532294">982 532 294</a> ·
+      <a href="mailto:albergueacasadecarmen@gmail.com">albergueacasadecarmen@gmail.com</a>
+    </div>
+  </div>
+</footer>
+
+<!-- ============== CHAT WIDGET ============== -->
+<div id="chat-launcher" onclick="toggleChat()" role="button" aria-label="Apri la chat" tabindex="0">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5 8.4 8.4 0 0 1-3.5-.75L4 21l1.8-4.9A8.5 8.5 0 1 1 21 11.5Z"/></svg>
+</div>
+
+<div id="chat-panel" role="dialog" aria-label="Scrivi un messaggio">
+  <h3>Scrivici</h3>
+  <div class="sub">Ti rispondiamo appena possibile. Nessuna prenotazione automatica.</div>
+  <a href="https://wa.me/34606156705" target="_blank" rel="noopener" class="whatsapp-link" id="whatsapp-link">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5.1-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1-.2.2-.7.8-.8.9-.1.2-.3.2-.6.1-.2-.1-1-.4-1.9-1.2-.7-.6-1.2-1.4-1.3-1.6-.1-.2 0-.4.1-.5.1-.1.2-.3.4-.4.1-.1.2-.3.2-.4.1-.2 0-.3 0-.5s-.6-1.5-.9-2c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.2-1 1-1 2.4s1 2.8 1.1 3c.1.2 2 3 4.8 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3Z"/></svg>
+    Scrivici su WhatsApp
+  </a>
+</div>
+
+<script>
+  // ---- 1. Cattura parametri di provenienza (per il tracciamento
+  //         di chi arriva dai messaggi/annunci Facebook) ----
+  function captureAttribution(){
+    const params = new URLSearchParams(window.location.search);
+    const keys = ["utm_source","utm_medium","utm_campaign","utm_content","fbclid","ref"];
+    const data = {};
+    let found = false;
+    keys.forEach(k=>{
+      const v = params.get(k);
+      if(v){ data[k]=v; found=true; }
+    });
+    if(found){
+      sessionStorage.setItem("acdc_attribution", JSON.stringify(data));
+    }
+    return JSON.parse(sessionStorage.getItem("acdc_attribution") || "{}");
+  }
+  const attribution = captureAttribution();
+
+  // ---- 2. Widget open/close ----
+  const panel = document.getElementById("chat-panel");
+  function openChat(){
+    panel.classList.add("open");
+    document.getElementById("whatsapp-link").focus();
+  }
+  function toggleChat(){
+    panel.classList.toggle("open");
+  }
+  document.getElementById("chat-launcher").addEventListener("keydown", e=>{
+    if(e.key === "Enter" || e.key === " "){ e.preventDefault(); toggleChat(); }
+  });
+
+  // ---- 3. Evento per GTM/GA4 al click su WhatsApp, solo se il
+  //         tag manager è già presente in pagina, non forziamo alcun ID ----
+  document.getElementById("whatsapp-link").addEventListener("click", function(){
+    if(window.dataLayer){
+      const attribuzione = Object.keys(attribution).length ? attribution : { utm_source: "diretto" };
+      window.dataLayer.push({ event: "acdc_whatsapp_click", ...attribuzione });
+    }
+  });
+</script>
+
+</body>
+</html>
